@@ -30,22 +30,34 @@ public class Exam1Project {
         Stack1.push(13);
         Stack1.push(16);
         Stack1.push(19);
-        Stack1.push(21);
-        System.out.println("6 numbers have been pushed");
+        int size = Stack1.size();
+        System.out.println(size +  " numbers have been pushed to the stack.");
         System.out.println("Current stack: " + Stack1.toString());
-        System.out.println("Is the stack empty? " + Stack1.isEmpty());
+        Stack1.pop();
+        Stack1.pop();
+        System.out.println("Stack has been changed");
+        System.out.println("New top element: " + Stack1.peek());
         
         LinkedStack Stack2 = new LinkedStack();
         System.out.println("Is the linked stack empty? " + Stack2.isEmpty());
-        Stack2.push(7);
-        Stack2.push(10);
-        Stack2.push(13);
-        Stack2.push(16);
-        Stack2.push(19);
-        Stack2.push(21);
-        System.out.println("6 numbers have been pushed");
+        Stack2.push(1);
+        Stack2.push(2);
+        Stack2.push(3);
+        Stack2.push(4);
+        Stack2.push(5);
+        Stack2.push(6);
+        size = Stack2.size();
+        System.out.println(size + " numbers have been pushed to the linked stack");
         System.out.println("Current stack: " + Stack2.toString());
-        System.out.println("Is the linked stack empty? " + Stack2.isEmpty());
+        Stack2.pop();
+        Stack2.pop();
+        Stack2.pop();
+        System.out.println("Linked Stack has been changed");
+        System.out.println("New top element: " + Stack2.peek());
+        Stack2.pop();
+        Stack2.pop();
+        Stack2.pop();
+        Stack2.pop();
         
         
     }

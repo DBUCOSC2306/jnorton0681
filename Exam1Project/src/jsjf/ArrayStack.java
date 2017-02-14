@@ -66,13 +66,18 @@ public class ArrayStack<T> implements StackADT<T>
      */
     public T pop() throws EmptyCollectionException
     {
-        if (isEmpty())
-            throw new EmptyCollectionException("stack");
-
+        try
+        {
+            if (isEmpty())
+                throw new EmptyCollectionException("stack");
+        }
+        catch(EmptyCollectionException e)
+        {
+            System.out.println("ERROR. Stack is empty! Cannot pop element!");
+        }
         top--;
         T result = stack[top];
         stack[top] = null; 
-
         return result;
     }
    
