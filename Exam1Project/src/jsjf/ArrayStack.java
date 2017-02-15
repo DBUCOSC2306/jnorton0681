@@ -70,16 +70,21 @@ public class ArrayStack<T> implements StackADT<T>
         {
             if (isEmpty())
                 throw new EmptyCollectionException("stack");
+            else
+            {
+                top--;
+                T result = stack[top];
+                stack[top] = null; 
+                return result;
+            }
         }
         catch(EmptyCollectionException e)
         {
             System.out.println("ERROR. Stack is empty! Cannot pop element!");
         }
-        top--;
-        T result = stack[top];
-        stack[top] = null; 
-        return result;
+        return null;
     }
+    
    
     /**
      * Returns a reference to the element at the top of this stack.
@@ -89,10 +94,18 @@ public class ArrayStack<T> implements StackADT<T>
      */
     public T peek() throws EmptyCollectionException
     {
-        if (isEmpty())
-            throw new EmptyCollectionException("stack");
-
-        return stack[top-1];
+        try
+        {
+            if (isEmpty())
+                throw new EmptyCollectionException("stack");
+            else
+                return stack[top-1];
+        }
+        catch(EmptyCollectionException e)
+        {
+            System.out.println("ERROR. Stack is empty! Cannot peek at element!");
+        }
+        return null;
     }
 
     /**

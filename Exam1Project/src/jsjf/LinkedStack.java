@@ -44,14 +44,26 @@ public class LinkedStack<T> implements StackADT<T>
      */
     public T pop() throws EmptyCollectionException
     {
-        if (isEmpty())
-            throw new EmptyCollectionException("stack");
-
-        T result = top.getElement();
-        top = top.getNext();
-        count--;
- 
-        return result;
+        
+        try
+        {
+            if (isEmpty())
+                throw new EmptyCollectionException("stack");
+            else
+            {
+                T result = top.getElement();
+                top = top.getNext();
+                count--;
+                return result;
+            }
+            
+        }
+        catch(EmptyCollectionException e)
+        {
+            System.out.println("ERROR. Linked stack is empty! Cannot pop element!");
+        }
+        return null;
+        
     }
    
     /**
@@ -62,7 +74,18 @@ public class LinkedStack<T> implements StackADT<T>
      */
     public T peek() throws EmptyCollectionException
     {
-        return top.getElement();
+        try
+        {
+            if (isEmpty())
+                throw new EmptyCollectionException("stack");
+            else
+                return top.getElement();
+        }
+        catch(EmptyCollectionException e)
+        {
+            System.out.println("ERROR. Linked stack is empty! Cannot peek at element!");
+        }
+        return null;
     }
 
     /**
