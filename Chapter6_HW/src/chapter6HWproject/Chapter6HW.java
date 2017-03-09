@@ -17,53 +17,46 @@ public class Chapter6HW {
         
 	// 1. Complete the incomplete classes
         // 2. In this main, write a test for each method AND any exceptions
-        // 3. Push all of the changes back to the repository (git push)
+        //3. Push all of the changes back to the repository (git push)
         ArrayUnorderedList Unordered = new ArrayUnorderedList(2);
-        System.out.println("Is the circle queue empty? " + Unordered.isEmpty()); //test isEmpty() (True)
-        Unordered.addToFront(1); //test enqeue()
-        Unordered.addToFront(10);
-        Unordered.addToRear(14);
-        Unordered.addToRear(16);
-        Unordered.addToRear(17);
-        Unordered.addToRear(19);
-        Unordered.addAfter(15, 14);
-        Unordered.addAfter(18, 17);
-        Unordered.addToRear(20);
-        //Unordered.removeLast();
-//       Unordered.addAfter(1,17);
-//        Unordered.addToRear(20);
-          int UnorderedSize = Unordered.size(); //test size()
-          System.out.println(UnorderedSize +  " numbers have been enqueued to the circle queue.");
-          System.out.println("Current circle queue: " + Unordered.toString()); //test toString()
-//        
-
-ArrayOrderedList Ordered = new ArrayOrderedList(2);
-        System.out.println("Is the circle queue empty? " + Unordered.isEmpty()); //test isEmpty() (True)
-        Ordered.add(14);
-        Ordered.add(1); //test enqeue()
-        Ordered.add(10);
-        Ordered.add(7);
-        Ordered.add(15);
-        Ordered.add(17);
-        Ordered.add(5);
-        //Unordered.removeLast();
-//       Unordered.addAfter(1,17);
-//        Unordered.addToRear(20);
-          int Orderedsize = Ordered.size(); //test size()
-          System.out.println(Orderedsize +  " numbers have been enqueued to the circle queue.");
-          System.out.println("Current circle queue: " + Ordered.toString()); //test toString()
-          
-//        Unordered.removeFirst();
-//        Unordered.removeLast();
-//        System.out.println("Circle queue has been changed");
-//        System.out.println("Is the circle queue empty? " + Unordered.isEmpty()); //test isEmpty() (False)
-//        System.out.println("New front element: " + Unordered.first()); //test first()
-//        System.out.println("Current circle queue: " + Unordered.toString()); //test toString()
-//        Unordered.removeFirst();
-//        Unordered.removeFirst();
-//        System.out.println("Circle queue has been changed.\nIs the circle queue empty? " + Unordered.isEmpty());
-//        Unordered.removeFirst(); //test dequeue() exception
-//        Unordered.first(); //test first() exception
+        System.out.println("Is the unordered list empty? " + Unordered.isEmpty()); //test isEmpty() (True)
+        int UnorderedSize = Unordered.size(); //test size()
+        Unordered.addToFront(1); //test addToFront()
+        Unordered.addToRear(14); //test addToRear()
+        Unordered.addAfter(3, 1); //test addToAfter()
+        UnorderedSize = Unordered.size();
+        System.out.println("Unordered list new size: " + UnorderedSize + ". Number of elements in list: " + Unordered.getCount());
+        //test first() and last() 
+        System.out.println("Unordered list first element: " + Unordered.first() + ". Unordered list last element: " + Unordered.last()); 
+        System.out.println("Current unordered list: " + Unordered.toString()); //test toString()
+        Unordered.remove(3);//test remove()
+        Unordered.removeLast();//test removeLast()
+        Unordered.removeFirst();//test removeFirst()
+        UnorderedSize = Unordered.size();
+        System.out.println("Unordered list new size: " + UnorderedSize + ". Number of elements in list: " + Unordered.getCount());
+        System.out.println("Current unordered list: " + Unordered.toString()); //test toString()
+        
+        System.out.println("");
+         
+        ArrayOrderedList Ordered = new ArrayOrderedList(2);
+        System.out.println("Is the unordered list empty? " + Ordered.isEmpty()); //test isEmpty() (True)
+        int OrderedSize = Ordered.size(); //test size()
+        Ordered.add(5); //test add()
+        Ordered.add(1); //test add()
+        Ordered.add(3); //test add()
+        OrderedSize = Ordered.size();
+        System.out.println("Ordered list new size: " + OrderedSize + ". Number of elements in list: " + Ordered.getCount());
+        //test first() and last() 
+        System.out.println("Ordered list first element: " + Ordered.first() + ". Ordered list last element: " + Ordered.last()); 
+        System.out.println("Current Ordered list: " + Ordered.toString()); //test toString()
+        Ordered.remove(3);//test remove()
+        Ordered.removeLast();//test removeLast()
+        Ordered.removeFirst();//test removeFirst()
+        OrderedSize = Ordered.size();
+        System.out.println("Ordered list new size: " + OrderedSize + ". Number of elements in list: " + Ordered.getCount());
+        System.out.println("Current Ordered list: " + Ordered.toString()); //test toString()
+        
+        System.out.println("");
         
     }
 }

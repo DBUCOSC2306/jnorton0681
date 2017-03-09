@@ -76,6 +76,7 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
                 T result = list[rear];
                 list[rear] = null;
                 count--;
+                rear = count -1;
                 return result;
                 
             }
@@ -102,14 +103,16 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
             else
             {
                 T result = list[0];
-                for(int i = 0; i < list.length; i++)
+                for(int i = 0; i < count; i++)
                 {    
-                    if(i == list.length - 1)
+                    if(i == count - 1)
                         list[i] = null;
                     else
                         list[i] = list[i+1];
                 //count--;
                 }
+                count--;
+                rear = count -1;
                 return result;
             }
         }
@@ -137,16 +140,16 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
             //throw new ElementNotFoundException("ArrayList");
 
         result = list[index];
-        rear--;
-		
-        // shift the appropriate elements 
-        for (int scan=index; scan < rear; scan++)
-            list[scan] = list[scan+1];
- 
-        list[rear] = null;
-		modCount++;
+            // shift the appropriate elements 
+            for (int scan=index; scan < rear + 1; scan++)
+                list[scan] = list[scan+1];
 
-        return result;
+            list[rear] = null;
+                    modCount++;
+            count--;
+            rear = count -1;
+
+            return result;
     }
    
     /**
@@ -173,7 +176,7 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
      */
     public T last() throws EmptyCollectionException
     {
-        T temp = list[list.length - 1];
+        T temp = list[rear];
         return temp;
     }
 

@@ -28,7 +28,10 @@ public class ArrayOrderedList<T> extends ArrayList<T>
     {
         super(initialCapacity);
     }
-
+    public int getCount()
+    {
+        return count;
+    }
     /**
      * Adds the specified Comparable element to this list, keeping
      * the elements in sorted order.
