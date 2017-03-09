@@ -20,6 +20,7 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
     protected int rear;
     protected T[] list; 
 	protected int modCount;
+        protected int count;
 
     /**
      * Creates an empty list using the default capacity.
@@ -50,7 +51,7 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
     {
         T[] newList = (T[]) (new Object[list.length *2]);
     
-        for (int i = 0; i < list.length; i++)
+        for (int i = 0; i < count; i++)
         {
             newList[i] = list[i];
         }
@@ -72,10 +73,11 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
                 throw new EmptyCollectionException("ERROR. ArrayList is empty! Cannot remove last element!");
             else
             {
-                T result = list[list.length - 1];
-                list[list.length - 1] = null;
-                //count--;
+                T result = list[rear];
+                list[rear] = null;
+                count--;
                 return result;
+                
             }
         }
         catch(EmptyCollectionException e)

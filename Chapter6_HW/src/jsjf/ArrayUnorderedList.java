@@ -27,6 +27,8 @@ public class ArrayUnorderedList<T> extends ArrayList<T>
     public ArrayUnorderedList(int initialCapacity)
     {
         super(initialCapacity);
+        count = 0;
+        rear = count;
     }
 
     /**
@@ -34,10 +36,34 @@ public class ArrayUnorderedList<T> extends ArrayList<T>
      * 
      * @param element the element to be added to the front of the list
      */
+    public int getCount()
+    {
+        return count;
+    }
+    public int getRear()
+    {
+        return rear;
+    }
     public void addToFront(T element)
     {
-        for (int shift=rear; shift > scan; shift--)
-            list[shift] = list[shift-1];
+       if (size() == count)
+            expandCapacity();
+       if(count > 0)
+       {
+            for(int i = rear+1; i > 0; i--)
+            {    
+                list[i] = list[i-1];
+            //count--;
+            }
+       }
+        list[0] = element;
+        rear = count;
+        count++;
+       
+
+        
+    //for (int shift=rear; shift > scan; shift--)
+            //list[shift] = list[shift-1];
     }
 
     /**
@@ -47,7 +73,12 @@ public class ArrayUnorderedList<T> extends ArrayList<T>
      */
     public void addToRear(T element)
     {
-        list[list.length] = element;
+        if (size() == count)
+            expandCapacity();
+        
+        list[rear+1] = element;
+        rear = count;
+        count++;
     }
 
     /**
@@ -59,7 +90,7 @@ public class ArrayUnorderedList<T> extends ArrayList<T>
      */
     public void addAfter(T element, T target)
     {
-        if (size() == list.length)
+        if (size() == count)
             expandCapacity();
 
         int scan = 0;
@@ -69,17 +100,18 @@ public class ArrayUnorderedList<T> extends ArrayList<T>
             scan++;
       
         if (scan == rear)
-            throw new ElementNotFoundException("UnorderedList");
+            //throw new ElementNotFoundException("UnorderedList");
     
         scan++;
 		
 		// shift elements up one
-        for (int shift=rear; shift > scan; shift--)
+        for (int shift=rear+1; shift > scan; shift--)
             list[shift] = list[shift-1];
 
 		// insert element
-		list[scan] = element;
-        rear++;
+		list[scan+1] = element;
+                rear=count;
+                count++;
 		modCount++;
     }
 }

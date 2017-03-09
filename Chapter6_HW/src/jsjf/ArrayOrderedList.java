@@ -37,12 +37,12 @@ public class ArrayOrderedList<T> extends ArrayList<T>
      */
     public void add(T element)
     {
-		if (!(element instanceof Comparable))
-			throw new NonComparableElementException("OrderedList");
+		//if (!(element instanceof Comparable))
+			//throw new NonComparableElementException("OrderedList");
 		
 		Comparable<T> comparableElement = (Comparable<T>)element;
         
-		if (size() == list.length)
+		if (size() == count)
             expandCapacity();
 
         int scan = 0;  
@@ -52,12 +52,13 @@ public class ArrayOrderedList<T> extends ArrayList<T>
             scan++;
 
 		// shift existing elements up one
-        for (int shift=rear; shift > scan; shift--)
+        for (int shift=rear+1; shift > scan; shift--)
             list[shift] = list[shift-1];
 
 		// insert element
         list[scan] = element;
-        rear++;
-		modCount++;
+        rear=count;
+        count++;
+        modCount++;
     }
 }
