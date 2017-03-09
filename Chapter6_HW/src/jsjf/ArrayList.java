@@ -2,6 +2,7 @@ package jsjf;
 
 import jsjf.exceptions.*;
 import java.util.*;
+import java.lang.Exception.*;
 
 /**
  * ArrayList represents an array implementation of a list. The front of
@@ -47,7 +48,14 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
      */
     protected void expandCapacity()
     {
-        // To be completed as a Programming Project
+        T[] newList = (T[]) (new Object[list.length *2]);
+    
+        for (int i = 0; i < list.length; i++)
+        {
+            newList[i] = list[i];
+        }
+        //rear = count;
+        list = newList;
     }
 	
     /**
@@ -58,7 +66,23 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
      */
     public T removeLast() throws EmptyCollectionException
     {
-        // To be completed as a Programming Project
+        try
+        {
+            if (isEmpty())
+                throw new EmptyCollectionException("ERROR. ArrayList is empty! Cannot remove last element!");
+            else
+            {
+                T result = list[list.length - 1];
+                list[list.length - 1] = null;
+                //count--;
+                return result;
+            }
+        }
+        catch(EmptyCollectionException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 
     /**
@@ -69,23 +93,46 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
      */
     public T removeFirst() throws EmptyCollectionException
     {
-        // To be completed as a Programming Project
+        try
+        {
+            if (isEmpty())
+                throw new EmptyCollectionException("ERROR. ArrayList is empty! Cannot remove first element!");
+            else
+            {
+                T result = list[0];
+                for(int i = 0; i < list.length; i++)
+                {    
+                    if(i == list.length - 1)
+                        list[i] = null;
+                    else
+                        list[i] = list[i+1];
+                //count--;
+                }
+                return result;
+            }
+        }
+        catch(EmptyCollectionException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
-
+    
     /**
      * Removes and returns the specified element.
      *
      * @param  element the element to be removed and returned from the list
-     * @return the removed elememt
+     * @return the removed element
+     * t
      * @throws ElementNotFoundException if the element is not in the list
      */
     public T remove(T element)
     {
-        T result;
+        T result = null;
         int index = find(element);
 
         if (index == NOT_FOUND)
-            throw new ElementNotFoundException("ArrayList");
+            //throw new ElementNotFoundException("ArrayList");
 
         result = list[index];
         rear--;
@@ -110,7 +157,8 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
      */
     public T first() throws EmptyCollectionException
     {
-        // To be completed as a Programming Project
+        T temp = list[0];
+        return temp;
     }
 
     /**
@@ -123,7 +171,8 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
      */
     public T last() throws EmptyCollectionException
     {
-        // To be completed as a Programming Project
+        T temp = list[list.length - 1];
+        return temp;
     }
 
     /**
@@ -167,7 +216,10 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
      */
     public boolean isEmpty()
     {
-        // To be completed as a Programming Project
+        if (list[0] == null)
+            return true;
+        else
+            return false;
     }
  
     /**
@@ -177,7 +229,7 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
      */
     public int size()
     {
-        // To be completed as a Programming Project
+        return list.length;
     }
 
     /**
@@ -187,7 +239,12 @@ public abstract class ArrayList<T> implements ListADT<T>, Iterable<T>
      */
     public String toString()
     {
-        // To be completed as a Programming Project
+        String result = "";
+        for(int i = 0; i < list.length; i++)
+        {
+            result = result + " " + list[i];
+        }
+        return result;
     }
 	
     /**
