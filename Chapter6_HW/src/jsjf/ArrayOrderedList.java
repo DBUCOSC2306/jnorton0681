@@ -49,7 +49,6 @@ public class ArrayOrderedList<T> extends ArrayList<T>
             expandCapacity();
 
         int scan = 0;  
-		
 		// find the insertion location
         while (scan < rear && comparableElement.compareTo(list[scan]) > 0)
             scan++;

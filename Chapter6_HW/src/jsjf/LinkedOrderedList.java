@@ -1,6 +1,6 @@
 package jsjf;
 
-import jsjf.exceptions.*;
+import static java.util.Collections.list;
 
 /**
  * LinkedOrderedList represents a singly linked implementation of an 
@@ -30,6 +30,31 @@ public class LinkedOrderedList<T> extends LinkedList<T>
 	 */
     public void add(T element)
     {
-        // To be completed as a Programming Project
+        Comparable<T> comparableElement = (Comparable<T>)element;
+        
+	// find the insertion location
+        
+        String res = "First: ";
+      LinearNode iterator = head;
+      int temp = null;
+      while (iterator != null) 
+      {
+         temp = iterator.getElement();
+         iterator = iterator.getNext();
+      }
+      res += "; Last: " + last.data;
+      return res;
+      
+      while (iterator != null && comparableElement.compareTo(iterator.getElement()) > 0)
+            scan++;
+		// shift existing elements up one
+        for (int shift=tail+1; shift > scan; shift--)
+            list[shift] = list[shift-1];
+
+		// insert element
+        list[scan] = element;
+        rear=count;
+        count++;
+        modCount++;
     }
 }
